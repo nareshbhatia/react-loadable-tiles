@@ -11,10 +11,14 @@
     flex: 1;
 }
 
+.add-tile-button {
+    margin-left: 8px;
+}
+
 .layout {
-    background-color: lightgrey;
 }
 
 .tile {
-    background-color: cadetblue;
+    border: 1px solid black;
+    border-radius: 4px;
 }
