@@ -1,0 +1,15 @@
+.root {
+
+}
+
+.toolbar {
+    padding: 8px;
+}
+
+.layout {
+    background-color: lightgrey;
+}
+
+.tile {
+    background-color: cadetblue;
+}

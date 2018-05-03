@@ -1,0 +1,27 @@
+{
+  "name": "react-loadable-tiles",
+  "description": "A simple drag-and-drop dashboard with dynamic tiles",
+  "version": "0.1.0",
+  "author": "Naresh Bhatia",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nareshbhatia/react-loadable-tiles.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "format": "prettier --print-width 80 --tab-width 4 --single-quote --write 'src/**/*.js'",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-grid-layout": "^0.16.6"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.1",
+    "react-scripts": "1.1.4"
+  }
+}
