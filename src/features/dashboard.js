@@ -10,13 +10,9 @@ export class Dashboard extends React.Component {
         breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
         cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
         currentBreakpoint: 'lg',
-        layouts: {
-            lg: [
-                { x: 0, y: 0, w: 1, h: 2 },
-                { x: 1, y: 0, w: 1, h: 2 },
-                { x: 2, y: 0, w: 1, h: 2 }
-            ]
-        }
+        layouts: {},
+        tileSpecs: [],
+        nextItem: 0
     };
 
     componentDidMount() {
@@ -29,12 +25,18 @@ export class Dashboard extends React.Component {
             breakpoints,
             cols,
             currentBreakpoint,
-            layouts
+            layouts,
+            tileSpecs
         } = this.state;
 
         return (
             <div className="root">
                 <div className="toolbar">
+                    <div className="add-tile-container">
+                        <button onClick={this.handleAddTileClicked}>
+                            Add Tile
+                        </button>
+                    </div>
                     Current breakpoint: {currentBreakpoint} ({
                         cols[currentBreakpoint]
                     }{' '}
@@ -42,26 +44,45 @@ export class Dashboard extends React.Component {
                 </div>
                 <ResponsiveGridLayout
                     className="layout"
-                    layouts={layouts}
                     breakpoints={breakpoints}
                     cols={cols}
+                    layouts={layouts}
                     useCSSTransforms={mounted}
                     onBreakpointChange={this.handleBreakpointChange}
                     onLayoutChange={this.handleLayoutChange}
                 >
-                    <div key="0" className="tile">
-                        0
-                    </div>
-                    <div key="1" className="tile">
-                        1
-                    </div>
-                    <div key="2" className="tile">
-                        2
-                    </div>
+                    {tileSpecs.map(tileSpec => this.createTile(tileSpec))}
                 </ResponsiveGridLayout>
             </div>
         );
     }
+
+    createTile = tileSpec => {
+        const { i, x, y, w, h } = tileSpec;
+        return (
+            <div key={i} className="tile" data-grid={{ x, y, w, h }}>
+                {i}
+            </div>
+        );
+    };
+
+    handleAddTileClicked = () => {
+        const { cols, currentBreakpoint, tileSpecs, nextItem } = this.state;
+        const i = nextItem;
+        this.setState({
+            tileSpecs: [
+                ...tileSpecs,
+                {
+                    i: i.toString(),
+                    x: i % cols[currentBreakpoint],
+                    y: Infinity,
+                    w: 1,
+                    h: 1
+                }
+            ],
+            nextItem: nextItem + 1
+        });
+    };
 
     handleBreakpointChange = breakpoint => {
         this.setState({
@@ -70,7 +91,8 @@ export class Dashboard extends React.Component {
     };
 
     handleLayoutChange = (layout, layouts) => {
-        console.log('layout', layout);
-        console.log('layouts', layouts);
+        this.setState({
+            layouts
+        });
     };
 }

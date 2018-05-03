@@ -3,7 +3,12 @@
 }
 
 .toolbar {
+    display: flex;
     padding: 8px;
+}
+
+.add-tile-container {
+    flex: 1;
 }
 
 .layout {
