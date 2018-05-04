@@ -1,8 +1,7 @@
 import React from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { AreaChart } from './area-chart';
-import { BarChart } from './bar-chart';
-import { LineChart } from './line-chart';
+import Loadable from 'react-loadable';
+import { BusyIndicator } from '../../components/busy-indicator';
 
 import './dashboard.css';
 
@@ -19,6 +18,21 @@ const TileName = {
     BarChart: 'Bar Chart',
     AreaChart: 'Area Chart'
 };
+
+const LoadableAreaChart = Loadable({
+    loader: () => import('./area-chart'),
+    loading: BusyIndicator
+});
+
+const LoadableBarChart = Loadable({
+    loader: () => import('./bar-chart'),
+    loading: BusyIndicator
+});
+
+const LoadableLineChart = Loadable({
+    loader: () => import('./line-chart'),
+    loading: BusyIndicator
+});
 
 export class Dashboard extends React.Component {
     state = {
@@ -95,13 +109,13 @@ export class Dashboard extends React.Component {
         let tileContent = null;
         switch (tileType) {
             case TileType.BarChart:
-                tileContent = <BarChart />;
+                tileContent = <LoadableBarChart />;
                 break;
             case TileType.LineChart:
-                tileContent = <LineChart />;
+                tileContent = <LoadableLineChart />;
                 break;
             case TileType.AreaChart:
-                tileContent = <AreaChart />;
+                tileContent = <LoadableAreaChart />;
                 break;
             default:
                 tileContent = tileType;
