@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlexibleXYPlot, HorizontalBarSeries, XAxis, YAxis } from 'react-vis';
 
-export function BarChart() {
+export default function BarChart() {
     const series1 = [
         { y: 1, x: 50 },
         { y: 2, x: 20 },

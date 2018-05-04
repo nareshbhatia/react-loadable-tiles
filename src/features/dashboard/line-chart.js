@@ -21,7 +21,7 @@ for (let i = 0; i < 20; i++) {
     data.push({ color: i, key: i, data: series, opacity: 0.8 });
 }
 
-export function LineChart() {
+export default function LineChart() {
     return (
         <FlexibleXYPlot
             colorType="linear"

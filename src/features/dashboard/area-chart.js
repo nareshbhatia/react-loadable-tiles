@@ -8,7 +8,7 @@ import {
     AreaSeries
 } from 'react-vis';
 
-export function AreaChart() {
+export default function AreaChart() {
     const margin = { top: 30, bottom: 50, left: 50, right: 30 };
 
     return (
